@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style_Globales.css">
+    <link rel="stylesheet" href="css/style_Header.css">
+    <link rel="stylesheet" href="css/style_Navigation.css">
+    <link rel="stylesheet" href="css/style_Hero Section.css">
+    <link rel="stylesheet" href="css/style_Vision-Mission.css">
+    <link rel="stylesheet" href="css/style_values.css">
+    <link rel="stylesheet" href="css/style_Footer.css">
+    <link rel="stylesheet" href="css/style_Audio.css">
+    <link rel="icon" href="/images/Icono.ico">
+    <title>Transportes Chasqui S.A.</title>
+
+</head>
+
+<body>
+    <!--header-->
+    <div id="header-placeholder"></div>
+    <script>
+        fetch('../html/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            // Resalta el botón de "Destinos" en el header
+                const navLinks = document.querySelectorAll('#header-placeholder nav a, #header-placeholder .nav-link');
+                navLinks.forEach(link => {
+                    if (
+                        link.href && (
+                            link.href.endsWith('/index.html') ||
+                            link.href.endsWith('index.html')
+                        )
+                    ) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+    </script>
+
+
+    <section class="hero">
+        <img src="images/hero.png" alt="Fondo hero" class="hero-bg">
+        <div class="container">
+            <h2>Transporte terrestre de calidad</h2>
+            <p>Conectando destinos con seguridad y puntualidad desde 1995</p>
+            <a href="html/servicios.html" class="btn">Nuestros Servicios</a>
+        </div>
+    </section>
+
+    <section class="vision-mision">
+        <div class="container">
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h2>Visión</h2>
+                <p>Ser la empresa líder en transporte terrestre, reconocida por su puntualidad, seguridad y excelencia
+                    en el servicio.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h2>Misión</h2>
+                <p>Brindar soluciones de transporte confiables y eficientes, superando las expectativas de nuestros
+                    clientes con un equipo comprometido y profesional.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="valores">
+        <div class="container">
+            <h2>Nuestros Valores</h2>
+            <div class="valores-grid">
+                <div class="valor">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Seguridad</h3>
+                    <p>Priorizamos la seguridad en cada viaje</p>
+                </div>
+                <div class="valor">
+                    <i class="fas fa-clock"></i>
+                    <h3>Puntualidad</h3>
+                    <p>Respetamos el tiempo de nuestros clientes</p>
+                </div>
+                <div class="valor">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Confianza</h3>
+                    <p>Construimos relaciones duraderas</p>
+                </div>
+                <div class="valor">
+                    <i class="fas fa-star"></i>
+                    <h3>Calidad</h3>
+                    <p>Excelencia en cada servicio</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <!--footer-->
+    <script>
+        fetch('html/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+
+    <div class="audio-player">
+        <button id="toggle-audio" class="audio-toggle">
+            <i class="fas fa-volume-up" id="volume-icon"></i>
+        </button>
+        <audio id="background-audio" src="audio/audio.mp3"></audio>
+    </div>
+
+    <script>
+        // Menú responsivo
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.getElementById('nav-links').classList.toggle('show');
+        });
+
+        // Control de audio
+        const audio = document.getElementById('background-audio');
+        const toggleButton = document.getElementById('toggle-audio');
+        const volumeIcon = document.getElementById('volume-icon');
+        let isPlaying = false;
+
+        toggleButton.addEventListener('click', function () {
+            if (isPlaying) {
+                audio.pause();
+                volumeIcon.className = 'fas fa-volume-mute';
+            } else {
+                audio.volume = 0.1;
+                audio.play();
+                volumeIcon.className = 'fas fa-volume-up';
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>
+
+</body>
+
+</html>
